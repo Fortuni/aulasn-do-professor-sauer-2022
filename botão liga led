@@ -1,0 +1,23 @@
+
+#include "main.h"
+
+
+int main(void)
+{
+
+	RCC->AHB1ENR=0X00000087;  //liga o clock
+	GPIOA->MODER|=0X28000400; //PA 5 COMO SAIDA
+    GPIOC->MODER|=0X00000000; // PINOS C COMO ENTRADA
+
+    
+
+  while (1)
+  {
+  if((GPIOC->IDR&0X2000)==0X2000){ //LE SE O PINO C13  NAO ESTA ATIVO E ISOLA OS OUTROS BITS QUE NAO VAO SER USADOS
+	  GPIOA->ODR&=~(0X20); //DESLIGA O PINO A5
+  }
+  else{          //SE ESTIVER ATIVO
+	  GPIOA->ODR|=0X20; //LIGA O PINO A5
+  }
+  }
+}
