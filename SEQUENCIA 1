@@ -16,7 +16,7 @@ int main(void)
  
   while (1)
   {
-	  //funciona apenas para pinos sequenciais
+	/*  //funciona apenas para pinos sequenciais
 	  //liga
 	  for(aux=0; aux<7; aux++){
 		  GPIOC->ODR|=1<<aux;
@@ -27,7 +27,7 @@ int main(void)
 		  GPIOC->ODR&=~(1<<aux);
 		  tempo();
 	  }
-	  
+	  */
 	  /*
 	  //liga
 	GPIOC->ODR|=0X0001; //p0
