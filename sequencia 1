@@ -15,7 +15,7 @@ int tempo(void)
 int main()
 {
     RCC->AHB1ENR=0X87;
-    GPIOC->MODER|=0X555555;
+    GPIOC->MODER|=0X5555;
     GPIOA->MODER|=0X28000400;
 
 while(1){
@@ -50,23 +50,7 @@ while(1){
         tempo();
     GPIOC->ODR&=~(0X40); //desliga p6
         tempo();
-    GPIOC->ODR|=0X100;  // liga p8
-        tempo();
     GPIOC->ODR&=~(0X80); //desliga p7
-        tempo();
-    GPIOC->ODR|=0X200;  // liga p9
-        tempo();
-    GPIOC->ODR&=~(0X100); //desliga p8
-        tempo();
-    GPIOC->ODR|=0X400;  // liga p10
-        tempo();
-    GPIOC->ODR&=~(0X200); //desliga p9
-        tempo();
-    GPIOC->ODR|=0X800;  // liga p11
-        tempo();
-    GPIOC->ODR&=~(0X400); //desliga p10
-        tempo();
-    GPIOC->ODR&=~(0X800); //desliga p11
         tempo();
 }
 }
