@@ -1,6 +1,8 @@
-
 #include "main.h"
-
+//função de delay
+void tps(){
+	for(int i=100000;i>0;i--);
+}
 
 
 //funções de PREDEFINIÇÕES.
@@ -32,7 +34,7 @@ void it7(){
 
 int main()
 {
-	int aux==1,c;
+	int aux,c=0;
    RCC->AHB1ENR=0X87;
    GPIOC->MODER|=0X5555;
    GPIOB->MODER|=0X0;
@@ -40,14 +42,12 @@ int main()
 
 
   while(1){
-	  aux=GPIOB->IDR&0x100; //pino b8
-	  aux=aux>>8;
-	  if(aux==0){
-		  c++;
+	  if((GPIOA->IDR&0X100)==0X100){ // se pino b8 em alta
+		  aux=1;}
+	  else{
+		  aux=0;
 	  }
-
-	
-	  
+	 
 
 	  if(c==0){ //=0
 		  it0();
