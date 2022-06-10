@@ -52,20 +52,18 @@ int main()
    GPIOC->MODER|=0X5555;
    GPIOB->MODER|=0X0;
    GPIOA->MODER|=0X28000400;
-   GPIOC->ODR=0x5555;
 
   while(1){
-	  if((GPIOB->IDR&0X100)==0X100 && (trava==0)){ // se pino b8 em alta
+	  if((GPIOB->IDR&0X100)==0X100){
+		  if(trava==0)// se pino b8 em alta
 		 trava=1;
-		 if(c>8){
-		 c = 0;
-		 }
-		 else{
-		 c++;
+		  c++;
 		 }
 	  }
 	 
-
+  	  if((GPIOB->IDR&=0x100) == 0x0){
+  		  if(trava == 1){
+  			  trava=0;
 	  }
 	  if(c==1){ //=1
 		  it1();
@@ -94,9 +92,6 @@ int main()
 	  if(c==7){  //=7
 		  it7();
 		  tps();
-	  }
-	  else{
-		  offset();//=0
 	  }
 }
 }
