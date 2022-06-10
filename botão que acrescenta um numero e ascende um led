@@ -14,7 +14,10 @@ GPIOC->ODR=0x0;  //desliga
 }
 
 //funções de PREDEFINIÇÕES.
-
+void it0(){
+	GPIOC->ODR=0x0; // 0000000
+	tps();
+}
 void it1(){
 	GPIOC->ODR=0X1; // 1000000
 	tps();
@@ -62,7 +65,15 @@ int main()
   	  if((GPIOB->IDR&=0x100) == 0x0){
   		  if(trava == 1){
   			  trava=0;
+  			  if(c>8){
+  				  c=0;
+  			  }
 
+      if(c==0){
+    	  it0();
+    	  tps();
+      }
+      }
 	  if(c==1){ //=1
 		  it1();
 		  tps();
@@ -94,4 +105,3 @@ int main()
   	}
   }
   }
-
