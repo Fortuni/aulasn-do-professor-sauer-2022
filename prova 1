@@ -1,0 +1,139 @@
+#include "main.h"
+//variaveis globais
+int trava=0;
+int c=0;
+//função de tempo
+void tps(){
+	for(int i=0;i<10000;i++);
+
+//funções de PREDEFINIÇÕES.
+void it0(){
+	GPIOC->ODR=0X0; // 0000000
+}
+void it1(){
+	GPIOC->ODR=0X1; // 1000000
+}
+void it2(){
+	GPIOC->ODR=0X3; // 1100000
+}
+void it3(){
+	GPIOC->ODR=0X7; // 1110000
+}
+void it4(){
+	GPIOC->ODR=0XF; // 1111000
+}
+void it5(){
+	GPIOC->ODR=0X1F; // 1111100
+}
+void it6(){
+	GPIOC->ODR=0X3F; // 1111110
+}
+void it7(){
+	GPIOC->ODR=0X7F; // 1111111
+}
+////funções de sequencia crescente de acordo com numero binario
+void seq1(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+}
+void seq2(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+	GPIOC->ODR=0X3; // 1100000
+}
+void seq3(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+	GPIOC->ODR=0X3; // 1100000
+		tps();
+	GPIOC->ODR=0X7; // 1110000
+}
+void seq4(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+	GPIOC->ODR=0X3; // 1100000
+		tps();
+	GPIOC->ODR=0X7; // 1110000
+		tps();
+	GPIOC->ODR=0XF; // 1111000
+
+}
+void seq5(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+	GPIOC->ODR=0X3; // 1100000
+		tps();
+	GPIOC->ODR=0X7; // 1110000
+		tps();
+	GPIOC->ODR=0XF; // 1111000
+		tps();
+	GPIOC->ODR=0X1F; // 1111100
+}
+void seq6(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+	GPIOC->ODR=0X3; // 1100000
+		tps();
+	GPIOC->ODR=0X7; // 1110000
+		tps();
+	GPIOC->ODR=0XF; // 1111000
+		tps();
+	GPIOC->ODR=0X1F; // 1111100
+		tps();
+	GPIOC->ODR=0X3F; // 1111110
+}
+void seq7(){
+	GPIOC->ODR=0X1; // 1000000
+		tps();
+	GPIOC->ODR=0X3; // 1100000
+		tps();
+	GPIOC->ODR=0X7; // 1110000
+		tps();
+	GPIOC->ODR=0XF; // 1111000
+		tps();
+	GPIOC->ODR=0X1F; // 1111100
+		tps();
+	GPIOC->ODR=0X7F; // 1111111
+}
+//////////
+
+int main()
+{
+	int aux;
+   RCC->AHB1ENR=0X87;
+   GPIOC->MODER|=0X5555;
+   GPIOB->MODER|=0X0;
+   GPIOA->MODER|=0X28000400;
+
+
+  while(1){
+	  seq7();
+
+	  aux=GPIOB->IDR&0x700; //pinos b8;b9;b10
+	  aux=aux>>8;
+	  if(aux==0){ //=0
+		  it0();
+	  }
+	  if(aux==1){ //=1
+		  it1();
+	  }
+	  if(aux==2){ //=2
+		  it2();
+	  }
+	  if(aux==3){ //=3
+		  it3();
+	  }
+	  if(aux==4){ //=4
+		  it4();
+	  }
+	  if(aux==5){ //=5
+		  it5();
+	  }
+	  if(aux==6){ //=6
+		  it6();
+	  }
+	  if(aux==7){  //=7
+		  it7();
+	  }
+  }
+}
