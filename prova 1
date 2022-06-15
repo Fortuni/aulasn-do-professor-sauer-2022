@@ -1,4 +1,3 @@
-
 #include "main.h"
 //variaveis globais
 int trava=0;
@@ -19,31 +18,37 @@ void ps1(){
 void ps2(){
 	GPIOC->ODR=0X3; // 1100000
 	tpisca();
+	GPIOC->ODR&=~0X3; // 1100000
 	tpisca();
 }
 void ps3(){
 	GPIOC->ODR=0X7; // 1110000
 	tpisca();
+	GPIOC->ODR&=~0X7; // 1110000
 	tpisca();
 }
 void ps4(){
 	GPIOC->ODR=0XF; // 1111000
 	tpisca();
+	GPIOC->ODR&=~0XF; // 1111000
 	tpisca();
 }
 void ps5(){
 	GPIOC->ODR=0X1F; // 1111100
 	tpisca();
+	GPIOC->ODR&=~0X1F;
 	tpisca();
 }
 void ps6(){
 	GPIOC->ODR=0X3F; // 1111110
 	tpisca();
+	GPIOC->ODR&=~0X3F; // 1111110
 	tpisca();
 }
 void ps7(){
 	GPIOC->ODR=0X7F; // 1111111
 	tpisca();
+	GPIOC->ODR&=~0X7F;
 	tpisca();
 }
 ////funções de sequencia crescente de acordo com numero binario
@@ -149,4 +154,3 @@ int main()
 	  }
   }
 }
-
