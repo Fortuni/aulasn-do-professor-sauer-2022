@@ -1,11 +1,51 @@
+
 #include "main.h"
 //variaveis globais
 int trava=0;
 int c=0;
-//função de tempo
+//funções de tempo
 void tps(){
-	for(int i=0;i<10000;i++);
-
+	for(int i=0;i<2;i++);
+void tpisca(){
+	for(int i=0;i<100000;i++);
+}
+//funões de pisca pisca
+void ps1(){
+	GPIOC->ODR=0X1; // 1000000
+	tpisca();
+	GPIOC->ODR&=~0X1; // 1000000
+	tpisca();
+}
+void ps2(){
+	GPIOC->ODR=0X3; // 1100000
+	tpisca();
+	tpisca();
+}
+void ps3(){
+	GPIOC->ODR=0X7; // 1110000
+	tpisca();
+	tpisca();
+}
+void ps4(){
+	GPIOC->ODR=0XF; // 1111000
+	tpisca();
+	tpisca();
+}
+void ps5(){
+	GPIOC->ODR=0X1F; // 1111100
+	tpisca();
+	tpisca();
+}
+void ps6(){
+	GPIOC->ODR=0X3F; // 1111110
+	tpisca();
+	tpisca();
+}
+void ps7(){
+	GPIOC->ODR=0X7F; // 1111111
+	tpisca();
+	tpisca();
+}
 //funções de PREDEFINIÇÕES.
 void it0(){
 	GPIOC->ODR=0X0; // 0000000
@@ -107,33 +147,24 @@ int main()
 
 
   while(1){
-	  seq7();
 
 	  aux=GPIOB->IDR&0x700; //pinos b8;b9;b10
 	  aux=aux>>8;
-	  if(aux==0){ //=0
-		  it0();
-	  }
-	  if(aux==1){ //=1
-		  it1();
-	  }
-	  if(aux==2){ //=2
-		  it2();
-	  }
-	  if(aux==3){ //=3
-		  it3();
-	  }
-	  if(aux==4){ //=4
-		  it4();
-	  }
-	  if(aux==5){ //=5
-		  it5();
-	  }
-	  if(aux==6){ //=6
-		  it6();
-	  }
-	  if(aux==7){  //=7
-		  it7();
+	  
+	  if((GPIOA->IDR&0X4)==0X4){//pino A2
+			  if(trava==0){
+				c=aux;  
+				  trava=1;}
+		  }
+	  if((GPIOB->IDR&=0x100) == 0x0){
+	  		  if(trava == 1){
+	  			  trava=0;
+	  		  }
+	 
+	  		  
+	  		  
+	  		  
+	  		  
 	  }
   }
 }
