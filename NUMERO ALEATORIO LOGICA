@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int n;
+    float aux;
+    srand(time(0));
+    int r=rand()%7;
+
+        aux = r;
+        if(aux==0){
+            aux= aux+1;
+        }
+    printf("%f", aux);
+    return 0;
+}
