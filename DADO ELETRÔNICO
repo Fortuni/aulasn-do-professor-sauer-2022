@@ -1,7 +1,12 @@
+#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 ////////////////////////****************DADO ELETRÔNICO*********************//////////////////
 //variaveis globais
 int trava=0;
-int c=0;
+int c;
 //função de tempo
 void tps(){
 	for(int i=0;i<10000;i++);
@@ -26,7 +31,7 @@ void it2(){
 	tps();
 }
 void it3(){
-	GPIOC->ODR=0X4A; // 1001001
+	GPIOC->ODR=0X49; // 1001001
 	tps();
 }
 void it4(){
@@ -49,20 +54,20 @@ int main()
    GPIOC->MODER|=0X5555;
    GPIOB->MODER|=0X0;
    GPIOA->MODER|=0X28000400;
+   int c;
 
-   srand(time(0));
+   srand(time(NULL));
   while(1){
 	  if(((GPIOB->IDR&0X100)==0X100)&& trava==0){
 		  c=rand()%7;
 			  trava=1;
 			  }
-	  }
 
   	  if(((GPIOB->IDR&=0x100) == 0x0) && trava == 1){
   		  	  trava=0;
-  			if(c==0){
-  				c+1;
-  			  }
+  			if(c==0)
+  			c=c+1;
+  	  }
 
 	  if(c==1){ //=1
 		  it1();
@@ -88,6 +93,5 @@ int main()
 		  it6();
 		  tps();
 	  }
-	  }
-  	}
   }
+}
